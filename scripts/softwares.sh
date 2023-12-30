@@ -5,6 +5,11 @@ DISTRO=$(hostnamectl | grep System | awk '{print $3}')
 function install_fedora() {  
   sudo dnf update -y
 
+  #chrome
+  sudo dnf install fedora-workstation-repositories
+  sudo dnf config-manager --set-enabled google-chrome
+  sudo dnf install google-chrome-stable
+
   #vscode
   sudo dnf install code
 
