@@ -24,8 +24,8 @@ function configure_fedora() {
 
 if [ "$DISTRO" == "Fedora" ]; then  
   install_fedora
-  configure_fedora
   install_flatpak
+  configure_fedora
 elif [ "$DISTRO" == "Ubuntu" ]; then
   install_ubuntu
   install_flatpak
