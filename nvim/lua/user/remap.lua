@@ -1,6 +1,6 @@
 vim.keymap.set("n", "<leader><leader>", vim.cmd.Ex)
 
--- paste withou loosing buffer
+-- paste without loosing buffer
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
@@ -21,6 +21,13 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
+-- paste without copy selected value that is changed
+vim.keymap.set({"n", "v"}, "<leader>p", "\"_dP")
+
+-- delete without copy selected value that is changed
+vim.keymap.set({"n", "v"}, "<leader>d", "\"_d")
+
 vim.keymap.set("n", "<leader>s", function()
     vim.cmd("so")
 end)
+vim.diagnostic.disable()

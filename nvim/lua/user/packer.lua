@@ -12,13 +12,7 @@ return require('packer').startup(function(use)
 
   use("tpope/vim-fugitive")
 
-  use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
-    config = function()
-      vim.cmd('colorscheme rose-pine')
-    end
-  })
+  use ("navarasu/onedark.nvim")
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -26,6 +20,7 @@ return require('packer').startup(function(use)
       local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
       ts_update()
     end,}
+
     use("nvim-treesitter/nvim-treesitter-context");
 
     use {
@@ -50,4 +45,17 @@ return require('packer').startup(function(use)
         {'rafamadriz/friendly-snippets'},
       }
     }
+
+    use({
+      "folke/trouble.nvim",
+      config = function()
+        require("trouble").setup {
+          icons = false,
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    })
+
   end)
