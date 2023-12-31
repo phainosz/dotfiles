@@ -7,8 +7,8 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
-        colors = true
-        interval = 5
+  colors = true
+    interval = 1
 }
 
 order += "disk /"
@@ -17,21 +17,26 @@ order += "tztime local"
 order += "volume master"
 
 battery all {
-        format = "%status %percentage %remaining"
+  format = "%status %percentage" 
+    status_chr = "⚡"
+    status_bat = "🔋"
+    status_full = "FULL"
+    integer_battery_capacity = true
+    last_full_capacity = true
 }
 
 tztime local {
-        format = "%d-%m-%Y %H:%M:%S"
+  format = "%d-%m-%Y %H:%M:%S"
 }
 
 disk "/" {
-        format = "%avail"
+  format = "%free"
 }
 
 volume master {
-        format = "♪: %volume"
-        format_muted = "♪: muted (%volume)"
-        device = "default"
-        mixer = "Master"
-        mixer_idx = 0
+  format = "%volume"
+    format_muted = "muted (%volume)"
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
 }
