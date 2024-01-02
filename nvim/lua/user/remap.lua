@@ -28,6 +28,5 @@ vim.keymap.set({"n", "v"}, "<leader>p", "\"_dP")
 vim.keymap.set({"n", "v"}, "<leader>d", "\"_d")
 
 vim.keymap.set("n", "<leader>s", function()
-    vim.cmd("so")
+    vim.cmd("wa")
 end)
-vim.diagnostic.disable()
