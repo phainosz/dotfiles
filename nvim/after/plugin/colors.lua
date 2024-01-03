@@ -1,4 +1,3 @@
--- Lua
 require('onedark').setup  {
     -- Main options --
     style = 'warmer',
@@ -38,5 +37,4 @@ require('onedark').setup  {
         background = true,    -- use background color for virtual text
     },
 }
-
 require('onedark').load()
