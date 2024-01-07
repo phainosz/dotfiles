@@ -19,5 +19,9 @@ sudo "$APK" install fd-find
 #ripgrep to use telescope
 sudo "$APK" install ripgrep
 
+#create a symlink with nvim from dotfiles git project to .config
+cd ../nvim/
+ln -s $(pwd) ~/.config/nvim
+
 # quickstart for packer
 # git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
