@@ -1,0 +1,95 @@
+".ideavimrc is a configuration file for IdeaVim plugin. It uses the same commands as the original .vimrc configuration.
+"For the mappings you can use a special <Action> keyword. Don't forget the parentheses.
+"E.g. map gh :action ShowErrorDescription)<CR>
+
+"to search commands use:
+" open seach everywhere > Actions
+" type track action id and enable option
+" type action you are trying to locate and run
+
+"map leader to space
+let mapleader=" "
+
+"commons settings
+"line numbers
+set nu
+set relativenumber
+"always show what mode we're currently editing in
+set showmode
+
+"tab / identantion
+set tabstop = 2
+set softtabstop = 2
+set shiftwidth = 2
+set expandtab = true
+set smartindent = true
+set wrap = false
+
+"search
+set hlsearch = false
+set incsearch = true
+set smartcase = true
+set termguicolors = true
+set updatetime = 50
+
+"remaps
+"exit inset mode with Ctrl + c
+inoremap <C-c> <Esc>
+
+"move selected lines in visual mode
+xnoremap J :m '>+1<CR>gv=gv
+xnoremap K :m '<-2<CR>gv=gv
+
+"apply zz with known commands to stay in middle screen when using them
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+"goTo keybinds
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gp :action GotoSuperMethod<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gb :action Back<CR>
+nnoremap gf :action Forward<CR>
+nnoremap ge :action GotoNextError<CR>
+
+"paste without loosing buffer
+xnoremap <leader>p "_dP
+nnoremap <leader>p "_dP
+
+"delete without loosing buffer
+xnoremap <leader>d "_d
+nnoremap <leader>d "_d
+
+"yank to system clipboard
+xnoremap <leader>y "+y
+nnoremap <leader>y "+y
+
+"show file structure
+nnoremap <C-s> :action FileStructurePopup<CR>
+
+"Quickly close the current window
+map <leader>e :action CloseContent<CR>
+
+"Open Global Find Dialog box
+nmap <leader>fp :action FindInPath<CR>
+nmap <leader>ff :action GotoFile<CR>
+nmap <leader>fc :action GotoClass<CR>
+nmap <leader>fg :action SearchEverywhere<CR>
+nmap <leader>fa :action GotoAction<CR>
+
+nmap <leader>p :action ParameterInfo<CR>
+nmap <leader>q :action QuickJavaDoc<CR>
+
+"move opened tabs
+nmap <C-l> :action NextTab<CR>
+nmap <C-h> :action PreviousTab<CR>
+
+"plugins
+"Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+
+"Commentary plugin
+Plug 'tpope/vim-commentary'
