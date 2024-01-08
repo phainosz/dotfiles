@@ -5,7 +5,7 @@ return {
   config = function()
     local configs = require("nvim-treesitter.configs")
     configs.setup({
-      rensure_installed = {
+      ensure_installed = {
         "java", "javascript", "go", "lua", "html", "json", "markdown", "markdown_inline", "yaml"
       },
       sync_install = false,
