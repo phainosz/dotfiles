@@ -80,7 +80,6 @@ nmap <leader>fc :action GotoClass<CR>
 nmap <leader>fg :action SearchEverywhere<CR>
 nmap <leader>fa :action GotoAction<CR>
 
-nmap <leader>p :action ParameterInfo<CR>
 nmap <leader>q :action QuickJavaDoc<CR>
 
 "move opened tabs
