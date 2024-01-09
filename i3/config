@@ -155,6 +155,8 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id nm-applet
+exec --no-startup-id /usr/lib/gsd-xsettings
+exec --no-startup-id /usr/libexec/gsd-xsettings
 
 # screen resolution
 # use xrandr to show monitor and change OUTPUT with monitor name and MODE to resolution size (1920x1080)
