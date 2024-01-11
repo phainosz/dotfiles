@@ -177,3 +177,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 
 # Suspend
 bindsym $mod+Shift+period exec systemctl suspend
+
+# bind printscreek key to use flameshot
+bindsym Print exec flameshot gui

@@ -24,6 +24,9 @@ function install_fedora() {
 
   #vlc
   sudo dnf install vlc
+
+  #flameshot
+  sudo dnf install flameshot
 }
 
 function install_ubuntu() {
