@@ -53,6 +53,9 @@ function install_flatpak() {
 
   #spotify
   flatpak install flathub com.spotify.Client
+
+  #firefox
+  flatpak install flathub org.mozilla.firefox
 }
 
 function install_sdkman() {

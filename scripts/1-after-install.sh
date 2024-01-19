@@ -10,10 +10,17 @@ function install_fedora() {
 function install_ubuntu() {
   sudo apt update -y && sudo apt upgrade -y
 
-  sudo apt install flatpak
+  sudo snap remove snap-store
+
+  sudo apt install gnome-software gnome-software-plugin-flatpak
+
+  sudo apt remove gnome-software-plugin-snap
+
+  sudo snap remove firefox
 }
 
 function install_flatpak() {
+  sudo apt install flatpak
   flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 }
 
