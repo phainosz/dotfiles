@@ -182,3 +182,9 @@ bindsym $mod+Shift+period exec systemctl suspend
 
 # bind printscreek key to use flameshot
 bindsym Print exec flameshot gui
+
+# keyboard pt_BR
+#exec_always setxkbmap -model abnt2 -layout br
+
+# keyboard english international pattern (cedilha, ~, á, à)
+exec_always setxkbmap -model abnt -layout us -variant intl
