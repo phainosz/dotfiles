@@ -11,7 +11,7 @@ fi
 
 sudo rm -rf ~/.local/share/nvim
 sudo rm -rf ~/.local/state/nvim
-sudo rm -rf ~/.config/nvim/
+sudo rm -rf ~/.config/nvim
 
 #fd to use with telescope
 sudo "$APK" install fd-find
