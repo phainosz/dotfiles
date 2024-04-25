@@ -1,72 +1,229 @@
 {
-    "editor.renderLineHighlight": "gutter",
-    "editor.minimap.enabled": false,
-    "editor.tabSize": 2,
-    "editor.parameterHints.enabled": true,
-    "editor.autoClosingBrackets": "never",
-    "editor.autoClosingQuotes": "never",
-    "editor.suggestSelection": "first",
-    "editor.colorDecorators": false,
-    "editor.lineNumbers": "relative",
-
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.colorTheme": "Dracula Soft",
-    "workbench.iconTheme": "vscode-icons",
-
-    "explorer.confirmDelete": false,
-    "explorer.compactFolders": false,
-
-    "terminal.integrated.fontSize": 16,
-    "breadcrumbs.enabled": true,
-    "vsicons.dontShowNewVersionMessage": true,
-    "settingsSync.ignoredExtensions": [],
-
-    //vim
-    "vim.leader": "<space>",
-    "vim.hlsearch": true,
-    "vim.useSystemClipboard": true,
-
-    "vim.normalModeKeyBindingsNonRecursive": [
-      //marker using bookmarks plugin
-      {"before": ["<leader>", "a"], "commands": ["bookmarks.toggle"]},
-      {"before": ["<leader>", "u"], "commands": ["bookmarks.list"]},
-
-      //splits
-      {"before": ["leader", "v"], "commands": [":vsplit"]},
-      {"before": ["leader", "s"], "commands": [":ssplit"]},
-
-       // panes
-      {"before": ["leader", "h"], "commands": ["workbench.action.focusLeftGroup"]},
-      {"before": ["leader", "j"], "commands": ["workbench.action.focusBelowGroup"]},
-      {"before": ["leader", "k"], "commands": ["workbench.action.focusAboveGroup"]},
-      {"before": ["leader", "l"], "commands": ["workbench.action.focusRightGroup"]},
-
-      // NICE TO HAVE
-      {"before": ["<C-s>"], "commands": [":w!"] },
-      {"before": ["leader", "q"], "commands": [":q!"] },
-      {"before": ["leader", "f"], "commands": ["workbench.action.quickOpen"] },
-      {"before": ["leader", "p"], "commands": ["editor.action.formatDocument"] },
-      {"before": ["g", "h"], "commands": ["editor.action.showDefinitionPreviewHover"]},
-
-      //goto
-      {"before": ["g", "i"], "coommands": ["editor.action.goToImplementation"]},
-      {"before": ["g", "d"], "coommands": ["editor.action.goToDeclaration"]},
-      {"before": ["g", "t"], "coommands": ["editor.action.goToTypeDefinition"]},
-      {"before": ["g", "p"], "coommands": ["editor.action.gotoAndPeek"]},
-      {"before": ["g", "r"], "coommands": ["editor.action.goToReferences"]},
-      //editor.gotoLocation.alternativeTypeDefinitionCommand
-    ],
-
-    "vim.visualModeKeyBindingsNonRecursive": [
-      // Stay in visual mode while indenting
-      {"before": ["<"], "commands": ["editor.action.outdentLines"]},
-      {"before": [">"], "commands": ["editor.action.indentLines"]},
-
-      // Move selected lines while staying in visual mode
-      {"before": ["J"], "commands": ["editor.action.moveLinesDownAction"]},
-      {"before": ["K"], "commands": ["editor.action.moveLinesUpAction"]},
-
-      // toggle comment selection
-      {"before": ["leader", "c"], "commands": ["editor.action.commentLine"]}
-    ],
-  }
+  "editor.renderLineHighlight": "gutter",
+  "editor.minimap.enabled": false,
+  "editor.tabSize": 2,
+  "editor.parameterHints.enabled": true,
+  "editor.autoClosingBrackets": "never",
+  "editor.autoClosingQuotes": "never",
+  "editor.suggestSelection": "first",
+  "editor.colorDecorators": false,
+  "editor.lineNumbers": "relative",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.colorTheme": "Dracula",
+  "workbench.iconTheme": "vscode-icons",
+  "explorer.confirmDelete": false,
+  "explorer.compactFolders": false,
+  "terminal.integrated.fontSize": 16,
+  "breadcrumbs.enabled": true,
+  "vsicons.dontShowNewVersionMessage": true,
+  "settingsSync.ignoredExtensions": [],
+  "vim.leader": "<space>",
+  "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "a"
+      ],
+      "commands": [
+        "bookmarks.toggle"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "u"
+      ],
+      "commands": [
+        "bookmarks.list"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "v"
+      ],
+      "commands": [
+        ":vsplit"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "s"
+      ],
+      "commands": [
+        ":ssplit"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "h"
+      ],
+      "commands": [
+        "workbench.action.focusLeftGroup"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "j"
+      ],
+      "commands": [
+        "workbench.action.focusBelowGroup"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "k"
+      ],
+      "commands": [
+        "workbench.action.focusAboveGroup"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "l"
+      ],
+      "commands": [
+        "workbench.action.focusRightGroup"
+      ]
+    },
+    {
+      "before": [
+        "<C-s>"
+      ],
+      "commands": [
+        ":w!"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "q"
+      ],
+      "commands": [
+        ":q!"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "f"
+      ],
+      "commands": [
+        "workbench.action.quickOpen"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "p"
+      ],
+      "commands": [
+        "editor.action.formatDocument"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "h"
+      ],
+      "commands": [
+        "editor.action.showDefinitionPreviewHover"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "i"
+      ],
+      "coommands": [
+        "editor.action.goToImplementation"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "d"
+      ],
+      "coommands": [
+        "editor.action.goToDeclaration"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "t"
+      ],
+      "coommands": [
+        "editor.action.goToTypeDefinition"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "p"
+      ],
+      "coommands": [
+        "editor.action.gotoAndPeek"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "r"
+      ],
+      "coommands": [
+        "editor.action.goToReferences"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ]
+    },
+    {
+      "before": [
+        ">"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ]
+    },
+    {
+      "before": [
+        "J"
+      ],
+      "commands": [
+        "editor.action.moveLinesDownAction"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "editor.action.moveLinesUpAction"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "c"
+      ],
+      "commands": [
+        "editor.action.commentLine"
+      ]
+    }
+  ]
+}

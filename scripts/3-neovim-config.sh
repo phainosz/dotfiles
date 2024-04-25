@@ -14,10 +14,10 @@ sudo rm -rf ~/.local/state/nvim
 sudo rm -rf ~/.config/nvim
 
 #fd to use with telescope
-sudo "$APK" install fd-find
+sudo "$APK" install fd-find -y
 
 #ripgrep to use telescope
-sudo "$APK" install ripgrep
+sudo "$APK" install ripgrep -y
 
 #create a symlink with nvim from dotfiles git project to .config
 cd ../nvim/

@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
 
-APK=
-DISTRO=$(hostnamectl | grep System | awk '{print $3}')
-
-if [ "$DISTRO" == "Fedora" ]; then  
-  APK=dnf
-elif [ "$DISTRO" == "Ubuntu" ]; then
-  APK=apt
-fi
-
 sudo rm -rf ~/.config/Code/User/keybindings.json
 sudo rm -rf ~/.config/Code/User/settings.json
 

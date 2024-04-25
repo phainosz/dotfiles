@@ -19,7 +19,11 @@
     "command": "vim.remap",
     "when": "inputFocus && vim.mode == 'Normal'",
     "args": {
-      "after": ["<C-d>", "z", "z"]
+      "after": [
+        "<C-d>",
+        "z",
+        "z"
+      ]
     }
   },
   {
@@ -27,7 +31,11 @@
     "command": "vim.remap",
     "when": "inputFocus && vim.mode == 'Normal'",
     "args": {
-      "after": ["<C-u>", "z", "z"]
+      "after": [
+        "<C-u>",
+        "z",
+        "z"
+      ]
     }
   },
   {
@@ -43,7 +51,6 @@
     "command": "editor.action.showHover",
     "when": "editorTextFocus"
   },
-   // FILE TREE
   {
     "command": "workbench.action.toggleSidebarVisibility",
     "key": "ctrl+e"
@@ -87,5 +94,5 @@
     "key": "ctrl+r",
     "command": "redo",
     "when": "filesExplorerFocus && !inputFocus"
-  },
+  }
 ]

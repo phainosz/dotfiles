@@ -9,7 +9,7 @@ elif [ "$DISTRO" == "Ubuntu" ]; then
   APK=apt
 fi
 
-sudo "$APK" install i3 i3status dmenu nemo kitty lxappearance arc-theme feh qt5ct
+sudo "$APK" install i3 i3status dmenu nemo kitty lxappearance arc-theme feh qt5ct -y
 
 sudo rm -rf ~/.config/i3
 
