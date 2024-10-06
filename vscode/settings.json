@@ -9,7 +9,7 @@
   "editor.colorDecorators": false,
   "editor.lineNumbers": "relative",
   "workbench.startupEditor": "newUntitledFile",
-  "workbench.colorTheme": "Dracula",
+  "workbench.colorTheme": "Dracula Theme",
   "workbench.iconTheme": "vscode-icons",
   "explorer.confirmDelete": false,
   "explorer.compactFolders": false,
@@ -17,6 +17,9 @@
   "breadcrumbs.enabled": true,
   "vsicons.dontShowNewVersionMessage": true,
   "settingsSync.ignoredExtensions": [],
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
   "vim.leader": "<space>",
   "vim.hlsearch": true,
   "vim.useSystemClipboard": true,
@@ -225,5 +228,5 @@
         "editor.action.commentLine"
       ]
     }
-  ]
+  ],
 }

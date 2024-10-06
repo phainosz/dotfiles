@@ -84,5 +84,17 @@
     "key": "ctrl+r",
     "command": "redo",
     "when": "filesExplorerFocus && !inputFocus"
-  }
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "ctrl+u",
+    "when": "editorTextFocus",
+    "args": "<C-u>"
+  },
+  {
+    "command": "vscode-neovim.send",
+    "key": "ctrl+d",
+    "when": "editorTextFocus",
+    "args": "<C-d>"
+  },
 ]
