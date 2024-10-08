@@ -2,6 +2,7 @@
 
 APK=
 DISTRO=$(hostnamectl | grep System | awk '{print $3}')
+CURRENT_FOLDER = $(pwd)
 
 function install_neovim_prerequisistes_ubuntu() {
   sudo apt-get install ninja-build gettext cmake unzip curl build-essential
@@ -17,6 +18,9 @@ function install_neovim() {
   cd $HOME/Documents/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
   sudo make install
   sudo rm -rf $HOME/Documents/neovim
+
+  #go back to script folder
+  cd "$CURRENT_FOLDER"
 }
 
 if [ "$DISTRO" == "Fedora" ]; then  
