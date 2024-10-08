@@ -15,8 +15,8 @@ function install_neovim_prerequisistes_fedora() {
 function install_neovim() {  
   #from source
   echo "Cloning from source"
-  git clone https://github.com/neovim/neovim $HOME/Documents/tools/neovim
-  cd $HOME/Documents/tools/neovim && make CMAKE_BUILD_TYPE=Release
+  git clone https://github.com/neovim/neovim $HOME/Documents/dev/tools/neovim
+  cd $HOME/Documents/dev/tools/neovim && make CMAKE_BUILD_TYPE=Release
   git checkout stable
   sudo make install
 
@@ -39,6 +39,7 @@ fi
 
 sudo rm -rf ~/.local/share/nvim
 sudo rm -rf ~/.local/state/nvim
+sudo rm -rf /usr/local/bin/nvim
 sudo rm -rf ~/.config/nvim
 
 install_neovim
