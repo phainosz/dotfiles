@@ -5,7 +5,6 @@ APK=
 
 function install_fedora() {  
   sudo dnf update -y
-
 }
 
 function install_ubuntu() {
