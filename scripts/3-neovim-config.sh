@@ -16,8 +16,8 @@ function install_neovim() {
   #from source
   echo "Cloning from source"
   git clone https://github.com/neovim/neovim $HOME/Documents/neovim
-  git checkout stable
   cd $HOME/Documents/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
+  git checkout stable
   sudo make install
 
   echo "Removing neovim source cloned"
