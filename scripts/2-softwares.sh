@@ -22,9 +22,6 @@ function install_fedora() {
   #git
   sudo dnf install git-all -y
 
-  #neovim
-  sudo dnf install neovim -y
-
   #vlc
   sudo dnf install vlc -y
 
