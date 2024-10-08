@@ -2,7 +2,7 @@
 
 APK=
 DISTRO=$(hostnamectl | grep System | awk '{print $3}')
-CURRENT_FOLDER = $(pwd)
+CURRENT_FOLDER='pwd'
 
 function install_neovim_prerequisistes_ubuntu() {
   sudo apt-get install ninja-build gettext cmake unzip curl build-essential
