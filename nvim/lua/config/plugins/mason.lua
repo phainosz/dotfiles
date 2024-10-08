@@ -61,7 +61,15 @@ return {
       },
     })
 
-    local servers = require("config.plugins.servers")
+    local servers = {
+      "gopls",
+      "lua_ls",
+      "efm",
+      "bashls",
+      "emmet_ls",
+      "jsonls",
+      "jdtls"
+    }
     mason_lspconfig.setup({
       -- list of servers for mason to install
       ensure_installed = servers,    -- auto-install configured servers (with lspconfig)
@@ -76,6 +84,8 @@ return {
         "black",    -- python formatter
         "pylint",   -- python linter
         "eslint_d", -- js linter
+        "gopls",    -- go formatter
+        "lua_ls",   -- lua language server
       },
     })
   end,

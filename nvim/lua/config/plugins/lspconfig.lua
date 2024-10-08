@@ -68,7 +68,15 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    local servers = require("config.plugins.servers")
+    local servers = {
+      "gopls",
+      "lua_ls",
+      "efm",
+      "bashls",
+      "emmet_ls",
+      "jsonls",
+      "jdtls"
+    }
     for _, value in pairs(servers) do
       lspconfig[value].setup({
         capabilities = capabilities,
