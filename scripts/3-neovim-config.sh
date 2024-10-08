@@ -15,13 +15,14 @@ function install_neovim_prerequisistes_fedora() {
 function install_neovim() {  
   #from source
   echo "Cloning from source"
-  git clone https://github.com/neovim/neovim $HOME/Documents/neovim
-  cd $HOME/Documents/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
+  git clone https://github.com/neovim/neovim $HOME/Documents/tools/neovim
+  cd $HOME/Documents/tools/neovim && make CMAKE_BUILD_TYPE=Release
   git checkout stable
   sudo make install
 
-  echo "Removing neovim source cloned"
-  sudo rm -rf $HOME/Documents/neovim
+  #echo "Removing neovim source cloned"
+  #sudo rm -rf $HOME/Documents/neovim
+  #sudo cmake --build build/ --target uninstall
 
   #go back to script folder
   echo "Moving back to script folder $CURRENT_FOLDER"
