@@ -14,6 +14,7 @@ function install_neovim_prerequisistes_fedora() {
 
 function install_neovim() {  
   #from source
+  sudo rm -rf $HOME/Documents/dev/tools/neovim
   echo "Cloning from source"
   git clone https://github.com/neovim/neovim $HOME/Documents/dev/tools/neovim
   cd $HOME/Documents/dev/tools/neovim 
