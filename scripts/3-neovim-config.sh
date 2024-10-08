@@ -15,6 +15,7 @@ function install_neovim_prerequisistes_fedora() {
 function install_neovim() {  
   #from source
   git clone https://github.com/neovim/neovim $HOME/Documents/neovim
+  git checkout stable
   cd $HOME/Documents/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
   sudo make install
   sudo rm -rf $HOME/Documents/neovim
