@@ -3,14 +3,6 @@
 APK=
 DISTRO=$(hostnamectl | grep System | awk '{print $3}')
 
-if [ "$DISTRO" == "Fedora" ]; then  
-  APK=dnf
-  install_neovim_prerequisistes_fedora
-elif [ "$DISTRO" == "Ubuntu" ]; then
-  APK=apt
-  install_neovim_prerequisistes_ubuntu
-fi
-
 function install_neovim_prerequisistes_ubuntu() {
   sudo apt-get install ninja-build gettext cmake unzip curl build-essential
 }
@@ -26,6 +18,14 @@ function install_neovim() {
   sudo make install
   sudo rm -rf $HOME/Documents/neovim
 }
+
+if [ "$DISTRO" == "Fedora" ]; then  
+  APK=dnf
+  install_neovim_prerequisistes_fedora
+elif [ "$DISTRO" == "Ubuntu" ]; then
+  APK=apt
+  install_neovim_prerequisistes_ubuntu
+fi
 
 sudo rm -rf ~/.local/share/nvim
 sudo rm -rf ~/.local/state/nvim
