@@ -53,7 +53,7 @@ nnoremap gp :action GotoSuperMethod<CR>
 nnoremap gt :action GotoTest<CR>
 nnoremap gb :action Back<CR>
 nnoremap gf :action Forward<CR>
-nnoremap ge :action GotoNextError<CR>
+nnoremap ]d :action GotoNextError<CR>
 
 "paste without loosing buffer
 xnoremap <leader>p "_dP
