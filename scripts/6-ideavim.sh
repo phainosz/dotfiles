@@ -4,4 +4,4 @@ sudo rm $HOME/.ideavimrc
 
 #create a symlink for .ideavimrc
 cd ../
-ln -s $(pwd)/.ideavimrc ~/.ideavimrc
+ln -s $(pwd)/.ideavimrc $HOME/.ideavimrc
