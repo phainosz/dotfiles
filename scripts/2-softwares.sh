@@ -2,7 +2,7 @@
 
 DISTRO=$(hostnamectl | grep System | awk '{print $3}')
 
-function install_fedora() {  
+function install_fedora() {
   sudo dnf update -y
 
   #chrome
@@ -16,6 +16,9 @@ function install_fedora() {
   sudo dnf check-update -y
   sudo dnf install code -y
 
+  #zed
+  curl -f https://zed.dev/install.sh | sh
+
   #qbitTorrent
   sudo dnf install qbittorrent -y
 
@@ -24,9 +27,6 @@ function install_fedora() {
 
   #vlc
   sudo dnf install vlc -y
-
-  #flameshot
-  sudo dnf install flameshot -y
 }
 
 function install_ubuntu() {
@@ -49,7 +49,7 @@ function install_jebrains_toolbox() {
 
 function install_flatpak() {
   #insomnia
-  flatpak install flathub rest.insomnia.Insomnia -y
+  #flatpak install flathub rest.insomnia.Insomnia -y
 
   #spotify
   flatpak install flathub com.spotify.Client -y
@@ -81,7 +81,7 @@ function configure_ssh() {
   ssh-add ~/.ssh/id_ed25519
 }
 
-if [ "$DISTRO" == "Fedora" ]; then  
+if [ "$DISTRO" == "Fedora" ]; then
   install_fedora
 elif [ "$DISTRO" == "Ubuntu" ]; then
   install_ubuntu

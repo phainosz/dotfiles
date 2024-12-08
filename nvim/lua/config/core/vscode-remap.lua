@@ -22,3 +22,7 @@ keymap({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.ac
 -- bookmarks keymaps
 keymap({ "n" }, "<leader>a", "<cmd>lua require('vscode').action('bookmarks.toogle')<CR>")
 keymap({ "n" }, "<leader>u", "<cmd>lua require('vscode').action('bookmarks.list')<CR>")
+
+keymap({ "n" }, "[d", vim.diagnostic.goto_prev) -- jump to previous diagnostic in buffer
+
+keymap({ "n" }, "]d", vim.diagnostic.goto_next) -- jump to next diagnostic in buffer
