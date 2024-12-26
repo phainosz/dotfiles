@@ -73,13 +73,13 @@ return {
     end
 
     local servers = {
-      "gopls",
+      --"gopls",
       "lua_ls",
       "efm",
       "bashls",
       "emmet_ls",
       "jsonls",
-      "jdtls"
+      --"jdtls"
     }
     for _, value in pairs(servers) do
       lspconfig[value].setup({
