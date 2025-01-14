@@ -17,5 +17,6 @@
     "metrics": false
   },
   "relative_line_numbers": true,
-  "cursor_blink": false
+  "cursor_blink": false,
+  "use_autoclose": false
 }

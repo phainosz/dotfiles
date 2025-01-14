@@ -51,9 +51,10 @@ nnoremap gi :action GotoImplementation<CR>
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gp :action GotoSuperMethod<CR>
 nnoremap gt :action GotoTest<CR>
-nnoremap gb :action Back<CR>
-nnoremap gf :action Forward<CR>
+nnoremap <C-o> :action Back<CR>
+nnoremap <C-i> :action Forward<CR>
 nnoremap ]d :action GotoNextError<CR>
+nnoremap [d :action GotoPreviousError<CR>
 
 "paste without loosing buffer
 xnoremap <leader>p "_dP
