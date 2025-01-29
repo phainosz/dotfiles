@@ -97,4 +97,24 @@
     "when": "editorTextFocus",
     "args": "<C-d>"
   },
+  {
+    "key": "] d",
+    "command": "editor.action.marker.next",
+    "when": "editorFocus"
+  },
+  {
+    "key": "[ d",
+    "command": "editor.action.marker.prev",
+    "when": "editorFocus"
+  },
+  {
+    "key": "] c",
+    "command": "workbench.action.editor.nextChange",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "[ c",
+    "command": "workbench.action.editor.previousChange",
+    "when": "editorFocus"
+  }
 ]
