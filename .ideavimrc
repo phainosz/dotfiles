@@ -56,6 +56,10 @@ nnoremap <C-i> :action Forward<CR>
 nnoremap ]d :action GotoNextError<CR>
 nnoremap [d :action GotoPreviousError<CR>
 
+"go to next/previous git change
+nnoremap ]c :action VcsShowNextChangeMarker<CR>
+nnoremap [c :action VcsShowPrevChangeMarker<CR>
+
 "paste without loosing buffer
 xnoremap <leader>p "_dP
 nnoremap <leader>p "_dP
@@ -86,6 +90,9 @@ nmap <leader>q :action QuickJavaDoc<CR>
 "move opened tabs
 nmap <C-l> :action NextTab<CR>
 nmap <C-h> :action PreviousTab<CR>
+
+"rename shortcut
+nmap <leader>rn :action RenameElement<CR>
 
 "plugins
 "Highlight copied text
