@@ -85,6 +85,9 @@ if [ "$DISTRO" == "Fedora" ]; then
   install_fedora
 elif [ "$DISTRO" == "Ubuntu" ]; then
   install_ubuntu
+else
+  echo "Unsupported distribution: $DISTRO"
+  exit 1
 fi
 
 install_flatpak

@@ -38,6 +38,9 @@ elif [ "$DISTRO" == "Ubuntu" ]; then
   APF=apt
   install_ubuntu
   install_flatpak
+else
+  echo "Unsupported distribution: $DISTRO"
+  exit 1
 fi
 
 sudo sh -c 'echo "set completion-ignore-case on" >> /etc/inputrc'
