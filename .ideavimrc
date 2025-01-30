@@ -94,9 +94,9 @@ nmap <C-h> :action PreviousTab<CR>
 "rename shortcut
 nmap <leader>rn :action RenameElement<CR>
 
-"reload for vim and project
-nmap <C-S-i> :action IdeaVim.ReloadVimRc.reload<CR>
-nmap <C-S-o> :action ExternalSystem.ProjectRefreshAction<CR>
+"reload for vim and project (use it only on mac)
+"nmap <C-S-i> :action IdeaVim.ReloadVimRc.reload<CR>
+"nmap <C-S-o> :action ExternalSystem.ProjectRefreshAction<CR>
 
 "plugins
 "Highlight copied text
