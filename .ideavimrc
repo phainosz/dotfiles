@@ -73,7 +73,7 @@ xnoremap <leader>y "+y
 nnoremap <leader>y "+y
 
 "show file structure
-nnoremap <C-s> :action FileStructurePopup<CR>
+nnoremap gs :action FileStructurePopup<CR>
 
 "Quickly close the current window
 map <leader>e :action CloseContent<CR>
@@ -93,6 +93,10 @@ nmap <C-h> :action PreviousTab<CR>
 
 "rename shortcut
 nmap <leader>rn :action RenameElement<CR>
+
+"reload for vim and project
+nmap <C-S-i> :action IdeaVim.ReloadVimRc.reload<CR>
+nmap <C-S-o> :action ExternalSystem.ProjectRefreshAction<CR>
 
 "plugins
 "Highlight copied text
