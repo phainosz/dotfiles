@@ -17,7 +17,7 @@ function install_fedora() {
   sudo dnf install code -y
 
   #zed
-  curl -f https://zed.dev/install.sh | sh
+  #curl -f https://zed.dev/install.sh | sh
 
   #qbitTorrent
   sudo dnf install qbittorrent -y
@@ -27,6 +27,7 @@ function install_fedora() {
 
   #vlc
   sudo dnf install vlc -y
+  sudo dnf swap ffmpeg-free ffmpeg --allowerasing -y
 }
 
 function install_ubuntu() {
