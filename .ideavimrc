@@ -1,4 +1,3 @@
-
 ".ideavimrc is a configuration file for IdeaVim plugin. It uses the same commands as the original .vimrc configuration.
 "For the mappings you can use a special <Action> keyword. Don't forget the parentheses.
 "E.g. map gh :action ShowErrorDescription)<CR>
@@ -88,7 +87,10 @@ nmap <leader>fa :action GotoAction<CR>
 
 "File Search and Replace
 nmap <C-f> :action Find<CR>
-nmap <C-r> :action Replace<CR>
+nmap <C-S-r> :action Replace<CR>
+
+nmap <leader>/ mz:action CommentByLineComment<CR>`z
+vmap <leader>/ mz:action CommentByLineComment<CR>`z
 
 nmap <leader>q :action QuickJavaDoc<CR>
 
