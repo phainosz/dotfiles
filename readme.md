@@ -3,5 +3,6 @@
 - [i3wm](./i3/)
 - [Neovim](./nvim/)
 - [VSCode](./vscode/)
-- [Kitty](./Kitty/)
+- [Kitty](./kitty/)
+- [Zed](./zed/)
 - [Scripts](./scripts/)

@@ -6,9 +6,9 @@ function install_fedora() {
   sudo dnf update -y
 
   #chrome
-  sudo dnf install fedora-workstation-repositories -y
-  sudo dnf config-manager --set-enabled google-chrome -y
-  sudo dnf install google-chrome-stable -y
+  #sudo dnf install fedora-workstation-repositories -y
+  #sudo dnf config-manager --set-enabled google-chrome -y
+  #sudo dnf install google-chrome-stable -y
 
   #vscode
   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -56,7 +56,7 @@ function install_flatpak() {
   flatpak install flathub com.spotify.Client -y
 
   #firefox
-  flatpak install flathub org.mozilla.firefox -y
+  #flatpak install flathub org.mozilla.firefox -y
 }
 
 function install_sdkman() {
