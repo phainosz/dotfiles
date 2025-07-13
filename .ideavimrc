@@ -84,6 +84,8 @@ nmap <leader>ff :action GotoFile<CR>
 nmap <leader>fc :action GotoClass<CR>
 nmap <leader>fg :action SearchEverywhere<CR>
 nmap <leader>fa :action GotoAction<CR>
+nmap <leader>fs :action FileStructurePopup<CR>
+nmap <leader>fr :action ReplaceInPath<CR>
 
 "File Search and Replace
 nmap <C-f> :action Find<CR>
