@@ -73,12 +73,9 @@ return {
     end
 
     local servers = {
-      --"gopls",
+      "gopls",
       "lua_ls",
       "efm",
-      "bashls",
-      "emmet_ls",
-      "jsonls",
       --"jdtls"
     }
     for _, value in pairs(servers) do

@@ -1,12 +1,17 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-  dependencies = "nvim-treesitter/nvim-treesitter-context",
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter-context",
+    opts = {
+      enable = false
+    }
+  },
   config = function()
     local configs = require("nvim-treesitter.configs")
     configs.setup({
       ensure_installed = {
-        "java", "javascript", "go", "lua", "html", "json", "markdown", "markdown_inline", "yaml"
+        "javascript", "go", "lua", "html"
       },
       sync_install = false,
       highlight = { enable = true },

@@ -65,9 +65,6 @@ return {
       "gopls",
       "lua_ls",
       "efm",
-      "bashls",
-      "emmet_ls",
-      "jsonls",
       "jdtls"
     }
     mason_lspconfig.setup({

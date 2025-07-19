@@ -21,7 +21,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank to system clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>p", "\"_dP", { desc = "Paste without loosing buffer" })
 
 -- delete without copy selected value that is changed
-vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d", { desc = "Delete withou loosing buffer" })
+vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d", { desc = "Delete without loosing buffer" })
 
 vim.keymap.set("n", "<C-s>", function()
   vim.cmd("wa")

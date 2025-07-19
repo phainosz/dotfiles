@@ -20,3 +20,7 @@ vim.opt.smartcase = true
 vim.opt.termguicolors = true
 
 vim.opt.updatetime = 50
+
+-- behavior setting
+vim.opt.encoding = "UTF-8"              -- Set encoding
+vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
