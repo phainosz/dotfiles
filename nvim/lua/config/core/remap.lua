@@ -1,28 +1,32 @@
-vim.keymap.set("n", "<leader>q", vim.cmd.Ex, { desc = "Go to netrw" })
+-- File Explorer
+vim.keymap.set("n", "<leader>q", vim.cmd.Ex, { desc = "Open file explorer (netrw)" })
 
--- exit insert mode with Ctrl + c
-vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Exit mode" })
+-- Exit insert mode with Ctrl + c
+--vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Exit mode" })
 
--- move selected lines in visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- Move selected lines in visual mode
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
--- apply zz with known commands to stay in middle screen when using them
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+-- Keep cursor centered
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half-page down & center" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half-page up & center" })
+vim.keymap.set("n", "n", "nzzzv", { desc = "Next search & center" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Prev search & center" })
 
--- yank to system clipboard
+-- Clipboard integration
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
-vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank to system clipboard" })
+vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
 
--- paste without copy selected value that is changed
-vim.keymap.set({ "n", "v" }, "<leader>p", "\"_dP", { desc = "Paste without loosing buffer" })
+-- Paste without overwriting default register
+vim.keymap.set({ "n", "v" }, "<leader>p", "\"_dP", { desc = "Paste without replacing clipboard" })
 
--- delete without copy selected value that is changed
-vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d", { desc = "Delete without loosing buffer" })
+-- Delete without yanking
+vim.keymap.set({ "n", "v" }, "<leader>d", "\"_d", { desc = "Delete without yanking" })
 
-vim.keymap.set("n", "<C-s>", function()
-  vim.cmd("wa")
-end, { desc = "Save all" })
+-- Save all files
+vim.keymap.set("n", "<C-s>", "<cmd>wa<CR>", { desc = "Save all files" })
+
+-- Better indenting in visual mode
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
