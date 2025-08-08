@@ -5,19 +5,8 @@ DISTRO=$(hostnamectl | grep System | awk '{print $3}')
 function install_fedora() {
   sudo dnf update -y
 
-  #chrome
-  #sudo dnf install fedora-workstation-repositories -y
-  #sudo dnf config-manager --set-enabled google-chrome -y
-  #sudo dnf install google-chrome-stable -y
-
-  #vscode
-  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-  sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-  sudo dnf check-update -y
-  sudo dnf install code -y
-
   #zed
-  #curl -f https://zed.dev/install.sh | sh
+  curl -f https://zed.dev/install.sh | sh
 
   #qbitTorrent
   sudo dnf install qbittorrent -y
@@ -28,6 +17,13 @@ function install_fedora() {
   #vlc
   sudo dnf install vlc -y
   sudo dnf swap ffmpeg-free ffmpeg --allowerasing -y
+
+  #zsh
+  sudo dnf install zsh
+  #ohmyzsh
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  #change to zsh
+  chsh -s $(which zsh)
 }
 
 function install_ubuntu() {
@@ -49,14 +45,8 @@ function install_jebrains_toolbox() {
 }
 
 function install_flatpak() {
-  #insomnia
-  #flatpak install flathub rest.insomnia.Insomnia -y
-
   #spotify
   flatpak install flathub com.spotify.Client -y
-
-  #firefox
-  #flatpak install flathub org.mozilla.firefox -y
 }
 
 function install_sdkman() {
@@ -92,7 +82,6 @@ else
 fi
 
 install_flatpak
-#disabled jebrains toolbox install
 #install_jebrains_toolbox
 install_sdkman
 configure_git
