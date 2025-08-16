@@ -252,28 +252,38 @@ end
 
 -- add autocompletion and keymap into LSPs
 -- every new LSP needed to be configured here
+
 local servers = {
-  "html",
-  "cssls",
-  "lua_ls",
-  "gopls"
+  html = { cmd = { 'vscode-html-language-server', '--stdio' }, root_files = { 'index.html' } },
+  css = { cmd = { 'vscode-css-language-server', '--stdio' }, root_files = { 'package.json', '*.css' } },
+  lua_ls = { cmd = { 'lua-language-server' }, root_files = { 'init.lua', '.luarc.json' } },
+  gopls = { cmd = { 'gopls' }, root_files = { 'go.mod' } },
 }
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local lspconfig = require("lspconfig")
-for _, lsp in ipairs(servers) do
-  local config = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-
-  if lsp == "lua_ls" then
-    config.settings = {
-      Lua = { diagnostics = { globals = { "vim" } } }
-    }
+-- Function to detect root of project
+local function find_root(markers)
+  local path = vim.fn.getcwd()
+  while path ~= "/" do
+    for _, marker in ipairs(markers) do
+      if vim.fn.filereadable(path .. "/" .. marker) == 1 or
+         vim.fn.isdirectory(path .. "/" .. marker) == 1 then
+        return path
+      end
+    end
+    path = vim.fn.fnamemodify(path, ":h")
   end
+  return vim.fn.getcwd() -- fallback
+end
 
-  lspconfig[lsp].setup(config)
-
-  --vim.lsp.enable(lsp, config) future version using native LSP config
+-- Loop to start LSPs with root detection
+for name, config in pairs(servers) do
+  local root = find_root(config.root_files)
+  if root then
+    vim.lsp.start({
+      name = name,
+      cmd = config.cmd,
+      root_dir = root,
+      on_attach = on_attach,
+    })
+  end
 end
