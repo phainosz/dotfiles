@@ -3,15 +3,12 @@
 -- =====================
 vim.pack.add({
   { src = "git@github.com:williamboman/mason.nvim.git" },
-  { src = "git@github.com:williamboman/mason-lspconfig.nvim.git" },
-  { src = "git@github.com:WhoIsSethDaniel/mason-tool-installer.nvim.git" },
-  { src = "git@github.com:neovim/nvim-lspconfig.git" },
   { src = "git@github.com:hrsh7th/nvim-cmp.git" },
   { src = "git@github.com:hrsh7th/cmp-nvim-lsp.git" },
-  { src = "git@github.com:hrsh7th/cmp-buffer.git" },
-  { src = "git@github.com:hrsh7th/cmp-path.git" },
+  { src = "git@github.com:neovim/nvim-lspconfig.git" },
+  { src = "git@github.com:williamboman/mason-lspconfig.nvim.git" },
+  { src = "git@github.com:WhoIsSethDaniel/mason-tool-installer.nvim.git" },
   { src = "git@github.com:L3MON4D3/LuaSnip.git" },
-  { src = "git@github.com:saadparwaiz1/cmp_luasnip.git" },
   { src = "git@github.com:onsails/lspkind.nvim.git" },
   { src = "git@github.com:lewis6991/gitsigns.nvim.git" },
   { src = "git@github.com:nvim-lualine/lualine.nvim.git" },
@@ -19,8 +16,10 @@ vim.pack.add({
 })
 
 -- =====================
--- THEME & TRANSPARENCY
+-- OPTIONS
 -- =====================
+
+-- Theme & Transparency
 vim.cmd.colorscheme("unokai")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
@@ -64,6 +63,10 @@ vim.opt.clipboard:append("unnamedplus")
 -- File handling
 vim.opt.updatetime = 200
 vim.opt.autoread = true
+
+-- =====================
+-- REMAPS
+-- =====================
 
 -- File Explorer
 vim.keymap.set("n", "<leader>q", vim.cmd.Ex, { desc = "Open file explorer (netrw)" })
@@ -126,12 +129,86 @@ cmp.setup({
 })
 
 -- =====================
+-- GITSIGNS
+-- =====================
+require("gitsigns").setup({
+  signs = { add = { text = '+' }, change = { text = '~' }, delete = { text = '_' }, topdelete = { text = '‾' }, changedelete = { text = '~' } },
+  on_attach = function(bufnr)
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+    map("n", "]c",
+    function() if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else require("gitsigns").nav_hunk("next") end end)
+    map("n", "[c",
+    function() if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else require("gitsigns").nav_hunk("prev") end end)
+  end,
+})
+
+-- =====================
+-- LUALINE
+-- =====================
+require("lualine").setup({ options = { theme = "auto", icons_enabled = false } })
+
+-- =====================
+-- TREESITTER
+-- =====================
+require('nvim-treesitter.configs').setup({
+  ensure_installed = { "html", "css", "lua", "go", "javascript" },
+  auto_install = true,
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  indent = {
+    enable = true,
+  },
+})
+
+-- =====================
+-- MASON
+-- =====================
+require("mason").setup({
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗",
+    },
+    keymaps = {
+      toggle_package_expand = "<CR>",
+      install_package = "i",
+      update_package = "u",
+      check_package_version = "c",
+      update_all_packages = "U",
+      check_outdated_packages = "C",
+      uninstall_package = "X",
+      cancel_installation = "<C-c>",
+      apply_language_filter = "<C-f>",
+      toggle_package_install_log = "<CR>",
+      toggle_help = "g?",
+    },
+  },
+})
+
+require("mason-lspconfig").setup({
+  -- install node so that html and css LSPs can work.
+  -- for each LSP you need, install the language and the LSP normally will be loaded as well.
+  ensure_installed = { "html", "cssls" },
+  automatic_installation = true,
+})
+
+require("mason-tool-installer").setup({
+  ensure_installed = { "stylua", "gopls", "lua_ls", "html-lsp", "css-lsp" },
+})
+
+-- =====================
 -- LSP
 -- =====================
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local opts = { noremap = true, silent = true }
 
 local on_attach = function(client, bufnr)
+  local opts = { noremap = true, silent = true }
   opts.buffer = bufnr
 
   opts.desc = "Show LSP references"
@@ -175,99 +252,28 @@ end
 
 -- add autocompletion and keymap into LSPs
 -- every new LSP needed to be configured here
+local servers = {
+  "html",
+  "cssls",
+  "lua_ls",
+  "gopls"
+}
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
-lspconfig.cssls.setup({ 
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
+for _, lsp in ipairs(servers) do
+  local config = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
 
-lspconfig.gopls.setup({ 
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
+  if lsp == "lua_ls" then
+    config.settings = {
+      Lua = { diagnostics = { globals = { "vim" } } }
+    }
+  end
 
-lspconfig.html.setup({ 
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
+  lspconfig[lsp].setup(config)
 
-lspconfig.lua_ls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = { Lua = { diagnostics = { globals = { "vim" } } } },
-})
-
--- =====================
--- GITSIGNS
--- =====================
-require("gitsigns").setup({
-  signs = { add = { text = '+' }, change = { text = '~' }, delete = { text = '_' }, topdelete = { text = '‾' }, changedelete = { text = '~' } },
-  on_attach = function(bufnr)
-    local function map(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      vim.keymap.set(mode, l, r, opts)
-    end
-    map("n", "]c",
-    function() if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else require("gitsigns").nav_hunk("next") end end)
-    map("n", "[c",
-    function() if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else require("gitsigns").nav_hunk("prev") end end)
-  end,
-})
-
--- =====================
--- LUALINE
--- =====================
-require("lualine").setup({ options = { theme = "auto", icons_enabled = false } })
-
--- =====================
--- MASON
--- =====================
-require("mason").setup({
-  ui = {
-    icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗",
-    },
-    keymaps = {
-      toggle_package_expand = "<CR>",
-      install_package = "i",
-      update_package = "u",
-      check_package_version = "c",
-      update_all_packages = "U",
-      check_outdated_packages = "C",
-      uninstall_package = "X",
-      cancel_installation = "<C-c>",
-      apply_language_filter = "<C-f>",
-      toggle_package_install_log = "<CR>",
-      toggle_help = "g?",
-    },
-  },
-})
-
-require("mason-lspconfig").setup({
-  -- install node so that html and css LSPs can work.
-  -- for each LSP you need, install the language and the LSP normally will be loaded as well.
-  ensure_installed = { "html", "cssls" },
-  automatic_installation = true,
-})
-
-require("mason-tool-installer").setup({
-  ensure_installed = { "stylua", "gopls", "lua_ls", "html-lsp", "css-lsp" },
-})
-
--- =====================
--- TREESITTER
--- =====================
-require('nvim-treesitter.configs').setup({
-  ensure_installed = { "html", "css", "lua", "go", "javascript" },
-  auto_install = true,
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  indent = {
-    enable = true,
-  },
-})
+  --vim.lsp.enable(lsp, config) future version using native LSP config
+end
