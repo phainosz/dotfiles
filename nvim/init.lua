@@ -173,6 +173,8 @@ local on_attach = function(client, bufnr)
 
 end
 
+-- add autocompletion and keymap into LSPs
+-- every new LSP needed to be configured here
 local lspconfig = require("lspconfig")
 lspconfig.cssls.setup({ 
   on_attach = on_attach,
@@ -245,19 +247,21 @@ require("mason").setup({
 })
 
 require("mason-lspconfig").setup({
-  ensure_installed = {  },
+  -- install node so that html and css LSPs can work.
+  -- for each LSP you need, install the language and the LSP normally will be loaded as well.
+  ensure_installed = { "html", "cssls" },
   automatic_installation = true,
 })
 
 require("mason-tool-installer").setup({
-  ensure_installed = { "stylua", "gopls", "lua_ls" },
+  ensure_installed = { "stylua", "gopls", "lua_ls", "html-lsp", "css-lsp" },
 })
 
 -- =====================
 -- TREESITTER
 -- =====================
 require('nvim-treesitter.configs').setup({
-  ensure_installed = {},
+  ensure_installed = { "html", "css", "lua", "go", "javascript" },
   auto_install = true,
   highlight = {
     enable = true,
