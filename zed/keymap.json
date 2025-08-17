@@ -5,7 +5,7 @@
       // Put key bindings here if you want them to work in normal & visual mode.
 
       "space f": "file_finder::Toggle",
-      "ctrl-h": "pane::ActivatePrevItem",
+      "ctrl-h": "pane::ActivatePreviousItem",
       "ctrl-l": "pane::ActivateNextItem",
 
       // Close active panel
