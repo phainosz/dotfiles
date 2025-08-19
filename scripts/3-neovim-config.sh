@@ -48,6 +48,18 @@ function install_neovim() {
     sudo rm -rf "$NEOVIM_SRC"
   fi
 
+  # Ask user stable or nightly
+  echo "Which Neovim version do you want to install?"
+  echo "1) Stable (recommended)"
+  echo "2) Nightly (latest features, may be unstable)"
+  read -rp "Enter 1 or 2: " choice
+
+  if [ "$choice" == "2" ]; then
+    CHANNEL="master"
+  else
+    CHANNEL="stable"
+  fi
+
   echo "Cloning Neovim from source"
   git clone https://github.com/neovim/neovim "$NEOVIM_SRC"
   cd "$NEOVIM_SRC"
