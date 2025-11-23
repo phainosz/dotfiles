@@ -12,7 +12,9 @@ All dotfiles and editor configurations are stored in a shared directory, so Linu
 ## Installing Ansible
 
 ### Fedora
-`sudo dnf install ansible -y`
+```
+sudo dnf install ansible -y
+```
 
 ### Ubuntu / Debian
 ```
@@ -20,7 +22,9 @@ sudo apt update && sudo apt install ansible -y
 ```
 
 ### macOS (homebrew)
-`brew install ansible`
+```
+brew install ansible
+```
 
 
 ## Using this repo
