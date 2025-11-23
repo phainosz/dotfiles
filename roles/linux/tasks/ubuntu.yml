@@ -1,0 +1,152 @@
+---
+# -------------------------
+# System tasks (require root)
+# -------------------------
+- name: Update and upgrade Ubuntu system
+  apt:
+    update_cache: yes
+    upgrade: dist
+  become: true
+
+- name: Remove Snap Store
+  snap:
+    name: snap-store
+    state: absent
+  become: true
+
+- name: Install GNOME software and flatpak plugin
+  apt:
+    name:
+      - gnome-software
+      - gnome-software-plugin-flatpak
+    state: present
+  become: true
+
+- name: Remove Snap plugin for GNOME software
+  apt:
+    name: gnome-software-plugin-snap
+    state: absent
+  become: true
+
+- name: Remove Firefox Snap
+  snap:
+    name: firefox
+    state: absent
+  become: true
+
+- name: Install general packages
+  apt:
+    name:
+      - qbittorrent
+      - vlc
+      - git
+      - zsh
+      - code
+    state: present
+    update_cache: yes
+  become: true
+
+# -------------------------
+# User-level tasks (normal user)
+# -------------------------
+- block:
+    # Git configuration
+    - name: Configure git username
+      git_config:
+        name: user.name
+        value: "{{ git_user }}"
+        scope: global
+
+    - name: Configure git email
+      git_config:
+        name: user.email
+        value: "{{ git_email }}"
+        scope: global
+
+    # SSH
+    - name: Ensure SSH directory exists
+      file:
+        path: "{{ ansible_env.HOME }}/.ssh"
+        state: directory
+        mode: "0700"
+
+    - name: Generate SSH key
+      openssh_keypair:
+        path: "{{ ansible_env.HOME }}/.ssh/id_ed25519"
+        type: ed25519
+        comment: "{{ git_email }}"
+        state: present
+        mode: "0600"
+
+    # Zed
+    - name: Install Zed
+      shell: curl -f https://zed.dev/install.sh | sh
+      args:
+        creates: "{{ ansible_env.HOME }}/.local/bin/zed"
+
+    - name: Ensure Zed config directory exists
+      file:
+        path: "{{ ansible_env.HOME }}/.config/zed"
+        state: directory
+
+    - name: Remove existing Zed files
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "{{ ansible_env.HOME }}/.config/zed/settings.json"
+        - "{{ ansible_env.HOME }}/.config/zed/keymap.json"
+
+    - name: Symlink Zed settings.json
+      file:
+        src: "{{ playbook_dir }}/common/zed/settings.json"
+        dest: "{{ ansible_env.HOME }}/.config/zed/settings.json"
+        state: link
+        force: true
+
+    - name: Symlink Zed keymap.json
+      file:
+        src: "{{ playbook_dir }}/common/zed/keymap.json"
+        dest: "{{ ansible_env.HOME }}/.config/zed/keymap.json"
+        state: link
+        force: true
+
+    # VSCode
+    - name: Remove existing VSCode config
+      file:
+        path: "{{ ansible_env.HOME }}/.config/Code/User"
+        state: absent
+
+    - name: Symlink VSCode config
+      file:
+        src: "{{ playbook_dir }}/common/vscode"
+        dest: "{{ ansible_env.HOME }}/.config/Code/User"
+        state: link
+        force: true
+
+    # IdeaVim
+    - name: Remove existing .ideavimrc
+      file:
+        path: "{{ ansible_env.HOME }}/.ideavimrc"
+        state: absent
+
+    - name: Symlink .ideavimrc
+      file:
+        src: "{{ playbook_dir }}/common/.ideavimrc"
+        dest: "{{ ansible_env.HOME }}/.ideavimrc"
+        state: link
+        force: true
+
+    # SDKMAN
+    - name: Install SDKMAN
+      shell: curl -s "https://get.sdkman.io" | bash
+      args:
+        creates: "{{ ansible_env.HOME }}/.sdkman/bin/sdk"
+
+    # Input completion ignore case
+    - name: Set inputrc completion-ignore-case
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.inputrc"
+        line: "set completion-ignore-case on"
+        create: yes
+  become: false

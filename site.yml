@@ -1,0 +1,30 @@
+---
+- name: Configure workstation
+  hosts: localhost
+  gather_facts: yes
+  become: false
+
+  vars_prompt:
+    - name: git_user
+      prompt: "Enter your Git username"
+      private: no
+
+    - name: git_email
+      prompt: "Enter your Git email"
+      private: no
+
+  tasks:
+    - name: Determine operating system
+      set_fact:
+        is_mac: "{{ ansible_facts['os_family'] == 'Darwin' }}"
+        is_linux: "{{ ansible_facts['os_family'] in ['RedHat', 'Debian'] }}"
+
+    - name: Apply Linux role
+      include_role:
+        name: linux
+      when: is_linux
+
+    - name: Apply macOS role
+      include_role:
+        name: mac
+      when: is_mac

@@ -1,0 +1,48 @@
+{
+  "plugins": {
+    "LuaSnip": {
+      "rev": "3732756842a2f7e0e76a7b0487e9692072857277",
+      "src": "git@github.com:L3MON4D3/LuaSnip.git"
+    },
+    "cmp-nvim-lsp": {
+      "rev": "cbc7b02bb99fae35cb42f514762b89b5126651ef",
+      "src": "git@github.com:hrsh7th/cmp-nvim-lsp.git"
+    },
+    "gitsigns.nvim": {
+      "rev": "cdafc320f03f2572c40ab93a4eecb733d4016d07",
+      "src": "git@github.com:lewis6991/gitsigns.nvim.git"
+    },
+    "lspkind.nvim": {
+      "rev": "3ddd1b4edefa425fda5a9f95a4f25578727c0bb3",
+      "src": "git@github.com:onsails/lspkind.nvim.git"
+    },
+    "lualine.nvim": {
+      "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
+      "src": "git@github.com:nvim-lualine/lualine.nvim.git"
+    },
+    "mason-lspconfig.nvim": {
+      "rev": "7d527c76c43f46294de9c19d39c5a86317809b4b",
+      "src": "git@github.com:williamboman/mason-lspconfig.nvim.git"
+    },
+    "mason-tool-installer.nvim": {
+      "rev": "517ef5994ef9d6b738322664d5fdd948f0fdeb46",
+      "src": "git@github.com:WhoIsSethDaniel/mason-tool-installer.nvim.git"
+    },
+    "mason.nvim": {
+      "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
+      "src": "git@github.com:williamboman/mason.nvim.git"
+    },
+    "nvim-cmp": {
+      "rev": "d97d85e01339f01b842e6ec1502f639b080cb0fc",
+      "src": "git@github.com:hrsh7th/nvim-cmp.git"
+    },
+    "nvim-lspconfig": {
+      "rev": "30a2b191bccf541ce1797946324c9329e90ec448",
+      "src": "git@github.com:neovim/nvim-lspconfig.git"
+    },
+    "nvim-treesitter": {
+      "rev": "42fc28ba918343ebfd5565147a42a26580579482",
+      "src": "git@github.com:nvim-treesitter/nvim-treesitter.git"
+    }
+  }
+}

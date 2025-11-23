@@ -1,0 +1,110 @@
+# -------------------------
+# Install build prerequisites
+# -------------------------
+- name: Install Neovim prerequisites Fedora
+  dnf:
+    name:
+      - ninja-build
+      - cmake
+      - gcc
+      - make
+      - unzip
+      - gettext
+      - curl
+      - ripgrep
+      - fd-find
+    state: present
+  when: ansible_facts['distribution'] | lower == "fedora"
+  become: true
+
+- name: Install Neovim prerequisites Ubuntu
+  apt:
+    name:
+      - ninja-build
+      - gettext
+      - cmake
+      - unzip
+      - curl
+      - build-essential
+      - ripgrep
+      - fd-find
+    state: present
+    update_cache: yes
+  when: ansible_facts['distribution'] | lower == "ubuntu"
+  become: true
+
+# Remove old Neovim paths
+- name: Remove old Neovim binary (root required)
+  file:
+    path: /usr/local/bin/nvim
+    state: absent
+  become: true
+
+- name: Remove old Neovim user files
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "{{ ansible_env.HOME }}/.local/share/nvim"
+    - "{{ ansible_env.HOME }}/.local/state/nvim"
+    - "{{ ansible_env.HOME }}/.config/nvim"
+  become: false
+
+# -------------------------
+# Ask user for channel
+# -------------------------
+- name: Ask Neovim version
+  pause:
+    prompt: "Choose Neovim version: 1) Stable 2) Nightly (enter 1 or 2)"
+  register: nvim_choice
+  become: false
+  become_user: "{{ ansible_user_id }}"
+
+- name: Set Neovim git channel
+  set_fact:
+    nvim_channel: "{{ 'master' if nvim_choice.user_input == '2' else 'stable' }}"
+  become: false
+  become_user: "{{ ansible_user_id }}"
+
+# -------------------------
+# Clone Neovim repository
+# -------------------------
+- name: Clone Neovim repository
+  git:
+    repo: https://github.com/neovim/neovim
+    dest: "{{ ansible_env.HOME }}/Documents/dev/tools/neovim"
+    version: "{{ nvim_channel }}"
+    force: yes
+  become: false
+  become_user: "{{ ansible_user_id }}"
+
+# -------------------------
+# Build and install Neovim
+# -------------------------
+- name: Build and install Neovim
+  shell: |
+    cd {{ ansible_env.HOME }}/Documents/dev/tools/neovim
+    make CMAKE_BUILD_TYPE=Release
+    sudo make install
+  args:
+    creates: /usr/local/bin/nvim
+  become: true
+
+# -------------------------
+# Symlink Neovim config
+# -------------------------
+- name: Ensure ~/.config exists
+  file:
+    path: "{{ ansible_env.HOME }}/.config"
+    state: directory
+  become: false
+  become_user: "{{ ansible_user_id }}"
+
+- name: Symlink Neovim config
+  file:
+    src: "{{ playbook_dir }}/common/nvim"
+    dest: "{{ ansible_env.HOME }}/.config/nvim"
+    state: link
+    force: true
+  become: false
+  become_user: "{{ ansible_user_id }}"

@@ -1,0 +1,86 @@
+---
+# -------------------------
+# System tasks (require root)
+# -------------------------
+- name: Update macOS software
+  command: softwareupdate -i -a
+  become: true
+
+- name: Ensure Homebrew is installed
+  shell: |
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  args:
+    creates: /opt/homebrew/bin/brew
+  become: true
+
+- name: Update Homebrew
+  homebrew:
+    update_homebrew: yes
+  become: true
+
+- name: Upgrade installed packages
+  homebrew:
+    upgrade_all: yes
+  become: true
+
+# -------------------------
+# User-level tasks
+# -------------------------
+- block:
+    # General packages
+    - name: Install general packages
+      homebrew:
+        name:
+          - git
+          - zsh
+          - visual-studio-code
+        state: present
+
+    # Git & SSH
+    - name: Configure git username
+      git_config:
+        name: user.name
+        value: "{{ git_user }}"
+        scope: global
+
+    - name: Configure git email
+      git_config:
+        name: user.email
+        value: "{{ git_email }}"
+        scope: global
+
+    - name: Ensure SSH directory exists
+      file:
+        path: "{{ ansible_env.HOME }}/.ssh"
+        state: directory
+        mode: "0700"
+
+    - name: Generate SSH key
+      openssh_keypair:
+        path: "{{ ansible_env.HOME }}/.ssh/id_ed25519"
+        type: ed25519
+        comment: "{{ git_email }}"
+        state: present
+        mode: "0600"
+
+    # IdeaVim
+    - name: Remove existing .ideavimrc
+      file:
+        path: "{{ ansible_env.HOME }}/.ideavimrc"
+        state: absent
+
+    - name: Symlink .ideavimrc
+      file:
+        src: "{{ playbook_dir }}/common/.ideavimrc"
+        dest: "{{ ansible_env.HOME }}/.ideavimrc"
+        state: link
+        force: true
+
+    # SDKMAN
+    - name: Install SDKMAN
+      shell: curl -s "https://get.sdkman.io" | bash
+      args:
+        creates: "{{ ansible_env.HOME }}/.sdkman/bin/sdk"
+
+  become: false
+  become_user: "{{ ansible_user_id }}"
