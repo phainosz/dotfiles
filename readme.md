@@ -32,5 +32,5 @@ brew install ansible
 git clone https://github.com/phainosz/dotfiles.git
 cd dotfiles
 
-ansible-playbook -i inventory/hosts.ini site.yml
+ansible-playbook -K -i inventory/hosts.ini site.yml
 ```

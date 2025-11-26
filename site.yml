@@ -13,6 +13,10 @@
       prompt: "Enter your Git email"
       private: no
 
+    - name: go_version
+      prompt: "Enter go version to install"
+      private: no
+
   tasks:
     - name: Determine operating system
       set_fact:

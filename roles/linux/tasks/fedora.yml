@@ -43,6 +43,44 @@
   become: true
 
 # -------------------------
+# Install Go (specific version)
+# -------------------------
+
+- name: Remove existing Go installation
+  file:
+    path: /usr/local/go
+    state: absent
+  become: true
+
+- name: Download Go tar to playbook directory
+  get_url:
+    url: "https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz"
+    dest: "{{ playbook_dir }}/go{{ go_version }}.linux-amd64.tar.gz"
+    mode: "0644"
+  become: false
+
+- name: Extract Go to /usr/local
+  unarchive:
+    src: "{{ playbook_dir }}/go{{ go_version }}.linux-amd64.tar.gz"
+    dest: /usr/local
+    remote_src: yes
+  become: true
+
+- name: Ensure Go is in PATH globally
+  copy:
+    dest: /etc/profile.d/go.sh
+    content: |
+      export PATH=$PATH:/usr/local/go/bin
+    mode: "0755"
+  become: true
+
+- name: Remove downloaded Go tarball
+  file:
+    path: "{{ playbook_dir }}/go{{ go_version }}.linux-amd64.tar.gz"
+    state: absent
+  become: false
+
+# -------------------------
 # User-level tasks (normal user)
 # -------------------------
 - block:
