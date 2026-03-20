@@ -17,43 +17,33 @@
   "breadcrumbs.enabled": true,
   "vsicons.dontShowNewVersionMessage": true,
   "settingsSync.ignoredExtensions": [],
-  "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
-  },
   "vim.leader": "<space>",
   "vim.hlsearch": true,
   "vim.useSystemClipboard": true,
+  "keyboard.dispatch": "keyCode", // only use it if key ] not working
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": ["<leader>", "a"],
-      "commands": [ "bookmarks.toggle"]
-    },
-    {
-      "before": ["<leader>", "u"],
-      "commands": ["bookmarks.list"]
-    },
-    {
-      "before": ["leader", "v"],
+      "before": ["<leader>", "v"],
       "commands": [":vsplit"]
     },
     {
-      "before": ["leader", "s"],
+      "before": ["<leader>", "s"],
       "commands": [":ssplit"]
     },
     {
-      "before": ["leader", "h"],
+      "before": ["<leader>", "h"],
       "commands": ["workbench.action.focusLeftGroup"]
     },
     {
-      "before": ["leader", "j"],
+      "before": ["<leader>", "j"],
       "commands": ["workbench.action.focusBelowGroup"]
     },
     {
-      "before": ["leader", "k"],
+      "before": ["<leader>", "k"],
       "commands": ["workbench.action.focusAboveGroup"]
     },
     {
-      "before": ["leader", "l"],
+      "before": ["<leader>", "l"],
       "commands": ["workbench.action.focusRightGroup"]
     },
     {
@@ -61,15 +51,15 @@
       "commands": [":w!"]
     },
     {
-      "before": ["leader", "e"],
+      "before": ["<leader>", "e"],
       "commands": [":q!"]
     },
     {
-      "before": ["leader", "f"],
+      "before": ["<leader>", "f"],
       "commands": ["workbench.action.quickOpen"]
     },
     {
-      "before": ["leader", "p"],
+      "before": ["<leader>", "p"],
       "commands": ["editor.action.formatDocument"]
     },
     {
@@ -78,23 +68,23 @@
     },
     {
       "before": ["g", "i"],
-      "coommands": ["editor.action.goToImplementation"]
+      "commands": ["editor.action.goToImplementation"]
     },
     {
       "before": ["g", "d"],
-      "coommands": ["editor.action.goToDeclaration"]
+      "commands": ["editor.action.goToDeclaration"]
     },
     {
       "before": ["g", "t"],
-      "coommands": ["editor.action.goToTypeDefinition"]
+      "commands": ["editor.action.goToTypeDefinition"]
     },
     {
       "before": ["g", "p"],
-      "coommands": ["editor.action.gotoAndPeek"]
+      "commands": ["editor.action.gotoAndPeek"]
     },
     {
       "before": ["g", "r"],
-      "coommands": ["editor.action.goToReferences"]
+      "commands": ["editor.action.goToReferences"]
     },
     {
       "before": ["<C-d>"],
@@ -103,6 +93,14 @@
     {
       "before": ["<C-u>"],
       "after": ["<C-u>", "z", "z"]
+    },
+    {
+      "before": ["{", "c"],
+      "commands": ["workbench.action.editor.previousChange"]
+    },
+    {
+      "before": ["}", "c"],
+      "commands": ["workbench.action.editor.nextChange"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -123,7 +121,7 @@
       "commands": ["editor.action.moveLinesUpAction"]
     },
     {
-      "before": ["leader", "c"],
+      "before": ["<leader>", "c"],
       "commands": ["editor.action.commentLine"]
     }
   ]
