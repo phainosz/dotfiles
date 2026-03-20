@@ -18,7 +18,7 @@
   },
 
   // =========================
-  // VIM SCROLL CENTRALIZADO
+  // VIM SCROLL CENTERED
   // =========================
   {
     "key": "ctrl+d",
@@ -38,7 +38,7 @@
   },
 
   // =========================
-  // NAVEGAÇÃO ENTRE TABS
+  // TAB NAVIGATION
   // =========================
   {
     "key": "ctrl+l",
@@ -112,14 +112,21 @@
     "command": "editor.action.marker.prev",
     "when": "editorTextFocus"
   },
+
+  // =========================
+  // FIX
+  // remove if keys [ and ] are working normally
+  // =========================
   {
-    "key": "] c",
-    "command": "workbench.action.editor.nextChange",
-    "when": "editorTextFocus"
+    "key": "]",
+    "command": "type",
+    "args": { "text": "]" },
+    "when": "editorTextFocus && vim.mode == 'Insert'"
   },
   {
-    "key": "[ c",
-    "command": "workbench.action.editor.previousChange",
-    "when": "editorTextFocus"
+    "key": "[",
+    "command": "type",
+    "args": { "text": "[" },
+    "when": "editorTextFocus && vim.mode == 'Insert'"
   }
 ]
