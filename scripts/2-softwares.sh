@@ -3,10 +3,11 @@
 DISTRO=$(hostnamectl | grep System | awk '{print $3}')
 
 function install_fedora() {
+  echo "Starting Fedora installation..."
   sudo dnf update -y
 
   #zed
-  curl -f https://zed.dev/install.sh | sh
+  #curl -f https://zed.dev/install.sh | sh
 
   #qbitTorrent
   sudo dnf install qbittorrent -y
@@ -27,7 +28,22 @@ function install_fedora() {
 }
 
 function install_ubuntu() {
-  sudo apt update -y && sudo apt upgrade -y
+  echo "Starting Ubuntu installation..."
+  sudo apt update -y
+  sudo apt upgrade -y
+
+  # Install core software packages
+  # git-all equivalent is usually git, we add common tools like curl for Zsh setup
+  sudo apt install -y qbittorrent git vlc zsh curl
+
+  # Zed installer (OS-agnostic curl script)
+  #curl -f https://zed.dev/install.sh | sh
+
+  # Oh My Zsh setup
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+  # Change to zsh
+  chsh -s $(which zsh)
 }
 
 function install_jebrains_toolbox() {
